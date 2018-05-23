@@ -3,7 +3,52 @@
       <title>The Thing</title>
     </head>
     <body>
-      <p>Hi there!</p>
-      <p>It works!</p>
+
+      {% for items in posts %}
+        <table border =1>
+          <tr><td colspan=3>Sprint Health Gadget</td></tr>
+          <tr><td colspan=3>{{items.0}}</td></tr>
+          <tr><td>Start Date</td><td>End Date</td><td>Days Remaining</td></tr>
+          <tr><td>{{items.1}}</td><td>{{items.2}}</td><td>{{items.3}}</td></tr>
+        </table>
+      {% endfor %}
+
+
+
+      <table border =1>
+        <tr><td colspan=13>Assigned Issue List</td></tr>
+        <tr><td><b>Issue</b></td>
+            <td><b>Summary</b></td>
+            <td><b>Priority</b></td>
+            <td><b>Due</b></td>
+            <td><b>Status</b></td>
+            <td><b>Idle</b></td>
+            <td><b>Dpl Plan</b></td>
+            <td><b>Unverifiable</b></td>
+            <td><b>Sprint</b></td>
+            <td><b>Time Spent</b></td>
+            <td><b>Remaining Estimate</b></td>
+            <td><b>Age</b></td>
+            <td><b>DEFCON</b></td>
+        </tr>
+      {% for items in posts2 %}
+      <tr>
+          {% for things in items %}
+            <td>{{things}}</td>
+          {% endfor %}
+          </tr>
+
+      {% endfor %}
+</table>
+
+    <table border=1>
+    <tr><td>
+
+      {{posts2}}
+    </td></tr>
+    <tr><td>
+      {{posts3}}
+    </td></tr>
+  </table>
   </body>
 </html>
