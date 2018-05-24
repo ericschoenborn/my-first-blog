@@ -48,7 +48,7 @@ def con_request(config):
 # requests used for get_time_log
 def token_config():
     c = configparser.ConfigParser()
-    c.read('config.ini')
+    c.read(['config.ini', os.path.expanduser(CONFIG_PATH)])
 
     return c
 

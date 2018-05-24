@@ -1,0 +1,50 @@
+
+h1 a {
+    color: #6495ED;
+    font-family: Verdana;
+}
+
+h3 a {
+    color: #6495ED;
+    font-family: Verdana;
+}
+
+body {
+	padding-left: 10px;
+
+}
+
+
+.table-striped {
+  tbody tr:nth-of-type(#{$table-striped-order}) {
+    background-color: $table-accent-bg;
+  }
+}
+
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+
+
+.page-header {
+    background-color: #6495ED;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+
+    color: #ffffff;
+    font-size: 24pt;
+    text-decoration: none;
+}
+
+.content {
+    margin-left: 40px;
+}
+
+
+}

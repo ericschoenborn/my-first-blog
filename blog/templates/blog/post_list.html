@@ -1,22 +1,36 @@
+
+
+{% load staticfiles %}
+
 <html>
     <head>
-      <title>The Thing</title>
+        <title>Birds's Eye</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-
+      <div class="page-header">
+           <h1><a href="/">Bird's Eye Report For: {{name}}</a></h1>
+       </div>
+       <table>
+         <tr><td style='display:block; margin-left:auto; margin-right:auto;'>
       {% for items in posts %}
-        <table border =1>
-          <tr><td colspan=3>Sprint Health Gadget</td></tr>
-          <tr><td colspan=3>{{items.0}}</td></tr>
-          <tr><td>Start Date</td><td>End Date</td><td>Days Remaining</td></tr>
+        <table class ="table table-striped" style='width:500px; display:block; margin-left:auto; margin-right:auto;'>
+          <tr><td colspan=3 style='background-color:#6495ED; padding:0px; text-align:center;'><h3 style='color:#FFFFFF; background-color:#6495ED; font-family:Verdana;'>Sprint Health Gadget</h3></td></tr>
+          <tr><td colspan=3><b>{{items.0}}</b></td></tr>
+          <tr><td><b>Start Date<b/></td><td><b>End Date<b/></td><td><b>Days Remaining<b/></td></tr>
           <tr><td>{{items.1}}</td><td>{{items.2}}</td><td>{{items.3}}</td></tr>
         </table>
       {% endfor %}
 
-
-
-      <table border =1>
-        <tr><td colspan=13>Assigned Issue List</td></tr>
+   </td></tr>
+     <tr><td style='text-align:center;'>
+      <table class ="table table-striped" style='display:block; margin-left:auto; margin-right:auto;'>
+	<thead>
+            <tr><th colspan=13 style='background-color:#6495ED; padding:0px; text-align:center;'><h3 style='color:#FFFFFF; background-color:#6495ED; font-family:Verdana;'>Assigned Issue List</h3></th></tr>
+         </thead>
         <tr><td><b>Issue</b></td>
             <td><b>Summary</b></td>
             <td><b>Priority</b></td>
@@ -34,21 +48,54 @@
       {% for items in posts2 %}
       <tr>
           {% for things in items %}
-            <td>{{things}}</td>
+            <td class=color{{items.12}}>{{things}}</td>
           {% endfor %}
           </tr>
 
       {% endfor %}
-</table>
+     </table>
+     <script type="text/jscript">
+      var colors =['#FFFFFF','#ffe7e7','#ffd','#ddfade','#e0f0ff'];
+      for(i=0; i<colors.length; i++){
+        var color_mod=i+1;
+        var color_class = "color"+color_mod;
+        var tag = document.getElementsByClassName(color_class);
+        for(j=0; j<tag.length; j++){
+          tag[j].style = "background-color:"+colors[i]+";";
+        }
+      }
 
-    <table border=1>
-    <tr><td>
+     </script>
 
-      {{posts2}}
-    </td></tr>
-    <tr><td>
-      {{posts3}}
-    </td></tr>
+
+    <br />
+  </td></tr>
+    <tr><td style='text-align:center;'>
+    <table id='hour_log'  class ="table table-striped" style='width:900px; display:block; margin-left:auto; margin-right:auto;'>
+        <tr><td colspan=3 style='background-color:#6495ED; padding:0px; text-align:center;'><h3 style='color:#FFFFFF; background-color:#6495ED; font-family:Verdana;'>Work Log from Previous Business Day</h3></td></tr>
+        <tr><td><b>Issue Key</b></td>
+            <td><b>Summary</b></td>
+            <td><b>Time Logged</b></td>
+        </tr>
+
+        {% for items in posts3 %}
+      <tr>
+          <td >{{items.0}}</td><td >{{items.1}}</td><td class='hours'>{{items.2}}</td>
+      </tr>
+
+      {% endfor %}
+      <script>
+        var x=0;
+        var hours= document.getElementsByClassName('hours');
+        var color = "#FF8F8B";
+        for(i=0; i<hours.length; i++){
+          x+= parseFloat(hours[i].innerHTML);
+        }
+        if(x>=8){color="#AFEEEE";}
+        document.getElementById('hour_log').innerHTML+="<tr ><td colspan='2' style='background-color:"+color+";'>Total</td><td style='background-color:"+color+";'>"+x+"</td></tr>"
+      </script>
   </table>
+</td></tr>
+</table>
   </body>
 </html>

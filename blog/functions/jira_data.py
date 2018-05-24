@@ -72,7 +72,5 @@ def main(person):
     return main_array
 
 
-
-
 if __name__ == "__main__":
     main()

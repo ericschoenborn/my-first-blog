@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 
 def get_sprints(parts):
@@ -24,7 +25,6 @@ def get_sprints(parts):
             # creating dictionary of sprint data
             for sprint in sprint_list:
 
-                sprint_string = sprint
                 sprint_ls = sprint.split(",")
 
                 for item in sprint_ls:
@@ -32,6 +32,10 @@ def get_sprints(parts):
 
                     if len(item) > 1:
                         sprint_dict[item[0]] = item[1]
+                name_match = re.search('name=([\w\d \-,]+),', sprint)
+                if name_match is not None:
+                    sprint_dict['name'] = name_match.group(0)
+                    sprint_dict['name'] = sprint_dict['name'].replace('name=','').strip(',')
 
             state_sprint = sprint_dict['state']
             name_sprint = sprint_dict['name']

@@ -8,7 +8,6 @@ def get_issues(parts, unverifiable_list):
 
     dpl_plan_list = dpl_title_list()
     issue_list = []
-
     all_sprints = []
 
     for part in parts['issues']:
